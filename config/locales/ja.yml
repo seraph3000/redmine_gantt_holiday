@@ -1,0 +1,63 @@
+ja:
+  gantt_holiday: "ガントチャート休日設定"
+  permission_manage_holiday: "休日の設定"
+  label_holiday_settings: "休日設定"
+  label_holiday_standard: "標準"
+  label_holiday_company_a: "会社A"
+  label_holiday_company_b: "会社B"
+  notice_holiday_copied: "新しいカレンダーを作成し、標準カレンダーから休日データをコピーしました。"
+  setting_show_subject_lines: "ガントチャートにチケット名表示"
+  
+  # === 今回追加したハードコード一掃用 ===
+  label_holiday_target_selection: "対象の選択"
+  label_holiday_calendar: "カレンダー"
+  label_holiday_target_year: "対象年"
+  label_holiday_name_optional: "休日名 (任意)"
+  label_holiday_date: "日付"
+  label_holiday_enable_toggle: "有効 (全選択/解除)"
+  label_holiday_unnamed: "(名称なし)"
+  label_holiday_placeholder_name: "休業日など"
+  label_holiday_csv_import: "CSVインポート (内閣府の祝日データ等)"
+  text_holiday_csv_info_1: "※「日付, 祝日名」の形式（ヘッダーなし）のCSVを読み込みます。"
+  text_holiday_csv_info_2: "※インポートされた休日は「公式」としてマークされ、別カレンダー作成時に自動コピーされます。"
+  label_use_holiday_calendar: "使用する休日カレンダー"
+  
+  notice_csv_import_success: "CSVインポート完了"
+  error_csv_import_failed: "インポート失敗: %{message}"
+  error_file_not_selected: "ファイルを選択してください"
+  error_file_too_large_1mb: "ファイルサイズが大きすぎます（上限1MB）。"
+  error_save_failed: "保存に失敗しました。"
+
+  enumeration_project_holiday: "休日カレンダー (ガントチャート)"
+  project_module_gantt_holiday: "ガントチャート休日設定"
+
+  # ===== oyakodon（親子操作）機能 =====
+  # コンテキストメニュー項目
+  label_oyakodon_child_issue: "子チケットを食べる"
+
+  # ポップアップUI
+  label_oyakodon_popup_title: "親子丼"
+  label_oyakodon_parent: "親"
+  label_oyakodon_children: "具"
+  label_oyakodon_confirm: "いただきます"
+  label_oyakodon_no_children: "具が選択されていません"
+
+  # エラーメッセージ
+  error_oyakodon_too_many: "一度に処理できる子チケットは%{count}件までです"
+  error_oyakodon_not_found: "チケット #%{id} が見つからないか、閲覧権限がありません"
+  error_oyakodon_cross_project: "チケット #%{id} は別プロジェクトのため対象外です"
+  error_oyakodon_self_reference: "チケット #%{id} は親自身のため子にできません"
+  error_oyakodon_not_editable: "チケット #%{id} の編集権限がありません"
+  error_oyakodon_parent_not_found: "親チケットが見つからないか、閲覧権限がありません"
+  error_oyakodon_forbidden: "親子操作の権限がありません"
+
+  # 権限名（Redmine権限一覧に表示される）
+  permission_oyakodon_child_issue: "ガント上で親子関係を編集"
+
+  # ----- ごちそうさま（親から離す） -----
+  label_oyakodon_release:        "ごちそうさま"
+  confirm_oyakodon_release:      "このチケットを親から離します。よろしいですか？"
+  error_oyakodon_no_parent:      "このチケットには親がありません"
+  error_oyakodon_release_failed: "ごちそうさまに失敗しました"
+  notice_oyakodon_released:      "親から離れました"
+

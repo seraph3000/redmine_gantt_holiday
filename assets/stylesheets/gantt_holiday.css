@@ -1,0 +1,37 @@
+/* =====================================================================
+ * Redmine Gantt Holiday plugin
+ * gantt_holiday.css
+ *
+ * Copyright (c) 2026 Seraph3000
+ * https://github.com/seraph3000/redmine_gantt_holiday
+ * ===================================================================== */
+
+/* ========================================
+ * 土曜・休日カラー（元祖準拠の配色）
+ * ======================================== */
+
+/* 土曜 - 青 */
+.is-saturday {
+  background-color: rgba(0, 152, 240, 0.08) !important;
+  color: blue !important;
+}
+
+/* 休日（日曜・祝日等）- 透過薄ピンク */
+.is-holiday {
+  background-color: rgba(250, 0, 0, 0.06) !important;
+  color: red !important;
+}
+
+/* ========================================
+ * ヘッダー固定
+ * ======================================== */
+
+#gantt_area {
+  overflow-x: scroll !important;
+  overflow-y: hidden !important;
+}
+
+#gantt_area > .gantt_hdr:first-child,
+.gantt_subjects_container > .gantt_hdr:first-child {
+  background-color: #eee !important;
+}

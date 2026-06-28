@@ -1,0 +1,62 @@
+en:
+  gantt_holiday: "Gantt Holiday Settings"
+  permission_manage_holiday: "Manage Holidays"
+  label_holiday_settings: "Holiday Settings"
+  label_holiday_standard: "Standard"
+  label_holiday_company_a: "Company A"
+  label_holiday_company_b: "Company B"
+  notice_holiday_copied: "Created new calendar. Holidays were copied from the Standard calendar."
+  setting_show_subject_lines: "Show subjects at right"
+  
+  # === Added for hardcoded string removal ===
+  label_holiday_target_selection: "Select Target"
+  label_holiday_calendar: "Calendar"
+  label_holiday_target_year: "Target Year"
+  label_holiday_name_optional: "Holiday Name (Optional)"
+  label_holiday_date: "Date"
+  label_holiday_enable_toggle: "Enable (Select/Deselect All)"
+  label_holiday_unnamed: "(Unnamed)"
+  label_holiday_placeholder_name: "e.g., Company Holiday"
+  label_holiday_csv_import: "CSV Import (e.g., National Holidays)"
+  text_holiday_csv_info_1: "* Imports CSV in 'Date, Holiday Name' format (without headers)."
+  text_holiday_csv_info_2: "* Imported holidays are marked as 'Official' and copied automatically when creating a new calendar."
+  label_use_holiday_calendar: "Holiday Calendar to Use"
+  
+  notice_csv_import_success: "CSV imported successfully."
+  error_csv_import_failed: "Import failed: %{message}"
+  error_file_not_selected: "Please select a file."
+  error_file_too_large_1mb: "File size is too large (1MB limit)."
+  error_save_failed: "Failed to save."
+
+  enumeration_project_holiday: "Holiday Calendars (Gantt)"
+  project_module_gantt_holiday: "Gantt Holiday Settings"
+
+  # ===== oyakodon (parent-child assignment) feature =====
+  # Context menu item
+  label_oyakodon_child_issue: "Devour child issues"
+
+  # Popup UI
+  label_oyakodon_popup_title: "Oyakodon"
+  label_oyakodon_parent: "Parent"
+  label_oyakodon_children: "Children"
+  label_oyakodon_confirm: "Itadakimasu"
+  label_oyakodon_no_children: "No child issues selected"
+
+  # Error messages
+  error_oyakodon_too_many: "Up to %{count} child issues can be processed at once"
+  error_oyakodon_not_found: "Issue #%{id} not found or not visible"
+  error_oyakodon_cross_project: "Issue #%{id} belongs to another project and was skipped"
+  error_oyakodon_self_reference: "Issue #%{id} cannot be its own child"
+  error_oyakodon_not_editable: "You don't have permission to edit issue #%{id}"
+  error_oyakodon_parent_not_found: "Parent issue not found or not visible"
+  error_oyakodon_forbidden: "You don't have permission for parent-child operations"
+
+  # Permission name (shown in Redmine permission list)
+  permission_oyakodon_child_issue: "Edit parent-child relations on Gantt"
+
+  # ----- Release (Gochisousama) -----
+  label_oyakodon_release:        "Gochisousama"
+  confirm_oyakodon_release:      "Release this issue from its parent?"
+  error_oyakodon_no_parent:      "This issue has no parent"
+  error_oyakodon_release_failed: "Failed to release"
+  notice_oyakodon_released:      "Released from parent"

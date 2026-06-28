@@ -1,0 +1,19 @@
+<%= form_with(url: project_gantt_holiday_path(@project), method: :put, local: true) do |f| %>
+  <div class="box tabular">
+    <p>
+      <label><%= l(:label_use_holiday_calendar) %></label>
+      <% 
+        # DB上の実際のデフォルト名を取得
+        default_cal = GanttHolidaySelect.find_by(name: ['標準', 'Standard'])&.name || '標準'
+        
+        # 現在保存されているカレンダー名を取得（未設定なら DBのデフォルト名）
+        current_cal = ProjectHoliday.find_by(project_id: @project.id)&.holiday_cal_name || default_cal
+        
+        # マスターから有効(active: true)なカレンダーのリストを取得
+        options = GanttHolidaySelect.where(active: true).order(:position).pluck(:name, :name)
+      %>
+      <%= select_tag 'holiday_cal_name', options_for_select(options, current_cal) %>
+    </p>
+  </div>
+  <%= submit_tag l(:button_save) %>
+<% end %>

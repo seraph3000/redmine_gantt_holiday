@@ -1,0 +1,193 @@
+/* =====================================================================
+   Redmine Gantt Holiday plugin - oyakodon（親子操作）スタイル
+
+   Copyright (c) 2026 Seraph3000
+   https://github.com/seraph3000/redmine_gantt_holiday
+   =====================================================================
+   設計方針:
+   - ポップアップは最前面(z-index高)・位置固定。ただし全面オーバーレイは
+     敷かない（下のガント行クリック/スクロールを生かすため）。
+   - 編集モード中に選択した行(.oyakodon-selected)は色反転で明示。
+   ===================================================================== */
+
+/* ---- ポップアップ本体 ---------------------------------------------- */
+#oyakodon-popup {
+  position: fixed;
+  top: 80px;
+  right: 24px;            /* 初期位置。ドラッグ開始でJSがleft/topに切替 */
+  z-index: 10000;         /* ガント・標準メニューより前面 */
+  width: 240px;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  color: #333;
+  user-select: none;      /* ドラッグ中の不要なテキスト選択を防ぐ */
+}
+
+#oyakodon-popup.oyakodon-hidden {
+  display: none;
+}
+
+/* フラッシュ（自己参照クリック等の警告時に一瞬光らせる） */
+#oyakodon-popup.oyakodon-flash {
+  animation: oyakodon-flash-anim 0.3s ease;
+}
+
+@keyframes oyakodon-flash-anim {
+  0%   { box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.0); }
+  50%  { box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.8); }
+  100% { box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.0); }
+}
+
+/* ---- ヘッダー（ドラッグ掴み部 + 閉じる） --------------------------- */
+.oyakodon-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #4a5f7a;
+  color: #fff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  cursor: move;           /* ここを掴んでドラッグ移動 */
+}
+
+.oyakodon-title {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.oyakodon-close {
+  cursor: pointer;
+  padding: 0 4px;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.oyakodon-close:hover {
+  opacity: 1;
+}
+
+/* ---- ボディ -------------------------------------------------------- */
+.oyakodon-body {
+  padding: 8px 10px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.oyakodon-parent {
+  padding: 4px 6px;
+  margin-bottom: 6px;
+  background: #fdf0e2;     /* 親=橙系（仕様: 親は橙、子は緑） */
+  border-left: 3px solid #e08a3c;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.oyakodon-children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.oyakodon-children li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 6px;
+  border-bottom: 1px dotted #ddd;
+}
+
+.oyakodon-children li:last-child {
+  border-bottom: none;
+}
+
+.oyakodon-no {
+  font-family: monospace;
+  color: #2f6f3e;          /* 子=緑系 */
+}
+
+.oyakodon-remove {
+  cursor: pointer;
+  color: #c0392b;
+  padding: 0 4px;
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.oyakodon-remove:hover {
+  opacity: 1;
+}
+
+.oyakodon-empty {
+  padding: 6px;
+  color: #999;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ---- フッター（ボタン） -------------------------------------------- */
+.oyakodon-footer {
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+  border-top: 1px solid #eee;
+}
+
+.oyakodon-footer button {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 12px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.oyakodon-confirm {
+  background: #4a7a4a;     /* いただきます=緑系で確定感 */
+  color: #fff;
+  border-color: #3c6b3c !important;
+  font-weight: bold;
+}
+
+.oyakodon-confirm:hover {
+  background: #3c6b3c;
+}
+
+.oyakodon-confirm:disabled {
+  background: #9bbf9b;
+  cursor: default;
+}
+
+.oyakodon-cancel {
+  background: #f3f3f3;
+  color: #555;
+}
+
+.oyakodon-cancel:hover {
+  background: #e6e6e6;
+}
+
+/* ---- 編集モード中のガント行ハイライト（色反転） -------------------- */
+/* 編集モードに入ると body に .oyakodon-mode が付く。
+   その間、ガント subject 内のチケットリンクをクリックで選択＝色反転。 */
+body.oyakodon-mode .gantt_subjects a.issue {
+  cursor: pointer;
+}
+
+/* 選択済み（具）の行：色反転で明示 */
+.oyakodon-selected {
+  background: #2f6f3e !important;   /* 緑地 */
+  color: #fff !important;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.oyakodon-selected:link,
+.oyakodon-selected:visited {
+  color: #fff !important;
+}
